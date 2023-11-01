@@ -35,7 +35,7 @@ function CreateRecipe() {
   const oSubmit= async (event)=>{
     event.preventDefault();
     try{
-        await axios.post("http://localhost:3001/recipes", { ...recipe });
+        await axios.post(process.env.REACT_APP_BACKEND_URL + "/recipes", { ...recipe });
         alert("Recipe Submitted/Created !")
         navigate("/");
     }catch(err){

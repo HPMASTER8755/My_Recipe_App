@@ -26,7 +26,7 @@ function Login() {
     const onSubmit= async (event)=>{
         event.preventDefault();
         try{
-            const response=await axios.post("http://localhost:3001/auth/login",{username,password});
+            const response=await axios.post(process.env.REACT_APP_BACKEND_URL + "/auth/login",{username,password});
 
             setCookies("access_token",response.data.token);
             window.localStorage.setItem("userID",response.data.userID);
@@ -57,7 +57,7 @@ function Register() {
     const onSubmit= async (event)=>{
         event.preventDefault();//prevent page refresh
         try{
-            await axios.post("http://localhost:3001/auth/register",{username,password});
+            await axios.post(process.env.REACT_APP_BACKEND_URL + "/auth/register",{username,password});
             alert("Registeration Completed ! Now Login !")
         }catch(err){
             console.error(err);

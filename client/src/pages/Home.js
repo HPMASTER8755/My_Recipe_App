@@ -12,7 +12,7 @@ function Home() {
   useEffect(()=>{
     const fetchRecipe= async ()=>{
       try{
-        const response=await axios.get("http://localhost:3001/recipes");
+        const response=await axios.get(process.env.REACT_APP_BACKEND_URL + "/recipes");
         setRecipes(response.data);
         // console.log(response.data);
     }catch(err){
@@ -23,7 +23,7 @@ function Home() {
     const fetchSavedRecipes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
+          process.env.REACT_APP_BACKEND_URL + `/recipes/savedRecipes/ids/${userID}`
         );
         setSavedRecipes(response.data.savedRecipes);
         // console.log(response.data);
@@ -39,7 +39,7 @@ function Home() {
 
   const saveRecipe = async (recipeID) => {
     try {
-      const response = await axios.put("http://localhost:3001/recipes", {
+      const response = await axios.put(process.env.REACT_APP_BACKEND_URL + "/recipes", {
         recipeID,
         userID,
       });
